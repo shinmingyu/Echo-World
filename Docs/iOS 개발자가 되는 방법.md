@@ -93,7 +93,16 @@ iOS 개발 커뮤니티와의 연결은 학습과 취업에 매우 중요합니�
 ---
 
 ## Keywords
-+ 파생된 키워드들을 작성
+- **Swift**  
+- **SwiftUI**  
+- **데이터 작업 (Data Handling)**  
+- **네트워킹 (Networking)**  
+- **버전 관리 (Version Control - Git 등)**
+- **UIKit**  
+- **Core Data**  
+- **테스트 (Testing)**  
+- **소프트웨어 아키텍처**  
+- **멀티스레딩 (Multithreading)**
 
 ## References
 - https://www.hackingwithswift.com/articles/230/how-to-become-an-ios-developer
