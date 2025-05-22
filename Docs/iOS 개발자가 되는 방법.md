@@ -96,4 +96,4 @@ iOS 개발 커뮤니티와의 연결은 학습과 취업에 매우 중요합니�
 + 파생된 키워드들을 작성
 
 ## References
-- 참고한 레퍼런스를 작성 (예 : Apple의 공식 문서)
+- https://www.hackingwithswift.com/articles/230/how-to-become-an-ios-developer
