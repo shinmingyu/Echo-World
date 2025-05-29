@@ -188,3 +188,51 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 📢 한 줄 요약
 Device Token은 “내 기기로 푸시를 보내주세요!”라는 주소표이고,
 항상 서버에 저장/관리해야 푸시 알림을 보낼 수 있다!
+
+
+### **4. 푸시 알림 Capabilities 설정 (Xcode)**
+**1. 왜 해야 할까?**
+• iOS 앱이 푸시 알림 기능을 사용하려면,
+Xcode(프로젝트 설정)에서 “이 앱은 푸시 알림을 쓸 거예요!”라고 명시해야
+실제 기기/프로비저닝 프로파일에서 알림 기능이 활성화됨.
+• 앱의 번들 ID, 인증서, 프로비저닝 프로파일 등도 이 설정을 기준으로 맞춰짐.
+
+**2. 설정 방법**
+① Xcode에서 Capabilities 켜기
+1. Xcode에서 프로젝트 열기
+2. 왼쪽에서 앱 Target 선택
+(보통 맨 위에 있는 프로젝트명을 클릭 → Targets 중 앱 선택)
+3. 탭 메뉴 중 ‘Signing & Capabilities’ 선택
+4. + Capability 버튼 클릭
+(또는, “Capability 추가”라고 보일 수도 있음)
+5. Push Notifications 검색/선택
+(목록에서 바로 찾을 수 있음)
+6. 추가되면 Push Notifications 항목이 리스트에 들어감
+(별다른 옵션 없이 켜지기만 하면 됨!)
+
+② 앱 아이디(Apple Developer) 설정도 확인
+• Xcode에서 Capabilities를 켜면,
+Apple Developer Center
+App ID에 자동으로 “Push Notifications” 기능이 활성화됨.
+• 가끔 자동 연동이 안 될 때는,
+Apple Developer Center에서 App ID를 찾아
+직접 “Push Notifications”을 켜야 할 때도 있음.
+
+③ 프로비저닝 프로파일 재생성(필요할 때만)
+• Capabilities를 추가한 뒤,
+프로비저닝 프로파일을 새로고침(재생성)해서 내려받아야 할 때도 있음.
+• (앱 배포/실기기 테스트할 때, 이 부분이 제대로 안 되어 있으면
+푸시 알림 등록이 실패할 수 있음!)
+
+**3. 정리**
+• Xcode에서 Capabilities(기능)로 Push Notifications를 활성화한다.
+• 이 설정은 앱의 인증서, 배포, 실제 푸시 등록에 반드시 필요하다.
+• 이 과정이 끝나면 앱이 iOS 푸시 알림 기능을 사용할 “자격”을 얻게 됨!
+
+**📌 실습 TIP**
+• 꼭 무료 계정이 아닌 유료 계정이어야만 사용할 수 있다.
+• 설정 후 바로 실기기에서 알림 권한 요청/토큰 발급까지 잘 되는지 확인해보면 좋아!
+• 프로필/앱ID 문제로 등록이 안 되면
+“권한 거부”나 “푸시 등록 실패” 에러가 뜨기도 하니
+Capabilities와 Developer Center 상태를 꼭 점검해.
+
