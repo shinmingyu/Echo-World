@@ -135,3 +135,52 @@ if let appSettings = URL(string: UIApplication.openSettingsURLString) {
 iOS 앱은 반드시 사용자의 동의를 받아야만 푸시 알림을 보낼 수 있으며,
 이를 위해 requestAuthorization 메서드를 사용한다!
 
+### **3. Device Token 발급 및 관리**
+● Device Token이란?
+• Device Token은
+iOS 기기마다 APNs가 발급해주는 고유 식별자(주소)야.
+• 이 토큰은
+“이 기기로 푸시 알림을 보내주세요!”
+라고 APNs에 요청할 때 사용하는 주소 역할을 해.
+
+● 발급 과정
+1. 앱이 APNs에 등록 요청
+(UIApplication.shared.registerForRemoteNotifications() 실행)
+2. APNs가 Device Token 발급
+(네트워크를 통해 기기-APNs 간에 자동 처리)
+3. iOS가 Device Token을 앱에게 전달
+(AppDelegate의 didRegisterForRemoteNotificationsWithDeviceToken 메서드에서 수신)
+
+● 예시 코드 (Swift)
+```
+// AppDelegate.swift
+
+// 1. APNs 등록 요청 후, 토큰 수신 콜백
+func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    // 2. deviceToken은 Data 타입, 보통 서버 전송 전에 String으로 변환
+    let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+    let tokenString = tokenParts.joined()
+    print("Device Token: \(tokenString)")
+
+    // 3. 서버로 deviceToken 전송 (API 호출 등)
+}
+```
+
+● 관리 방법
+• 앱 서버에 Device Token 저장
+• 보통 앱 최초 실행 시, 또는 토큰이 갱신될 때 서버에 전송
+• 서버는 이 토큰을 이용해 푸시 알림 발송 대상 관리
+• 토큰 갱신 감지
+• iOS는 가끔 deviceToken을 자동으로 갱신(보안, 시스템 사정)
+• 토큰이 변경될 때마다 항상 서버에 최신 토큰으로 갱신 필요
+
+● 주의할 점
+• 디바이스마다 토큰이 다름 (앱/기기/설치/빌드마다 다를 수 있음)
+• Simulator의 토큰은 실제 푸시 수신에 쓸 수 없음
+(테스트는 실제 기기에서 진행!)
+• 사용자가 알림 권한을 거부해도, 토큰은 발급 가능
+(단, 실제 알림 수신은 불가)
+
+📢 한 줄 요약
+Device Token은 “내 기기로 푸시를 보내주세요!”라는 주소표이고,
+항상 서버에 저장/관리해야 푸시 알림을 보낼 수 있다!
