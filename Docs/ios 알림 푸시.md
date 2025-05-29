@@ -81,3 +81,55 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 // 서버로 전송!
 }
 ```
+
+
+### **2. 푸시 알림 권한 요청**
+### ● 개념
+• iOS에서는 사용자 동의 없이 알림을 보낼 수 없음.
+• 앱이 처음 실행될 때(또는 필요할 때), 알림을 허용할지 묻는 팝업을 띄워야 함.
+• 사용자가 ‘허용’해야만 푸시 알림 수신 가능!
+
+● 동작 흐름
+1. 앱에서 권한 요청 코드를 실행
+2. 팝업이 뜸
+• “이 앱이 알림을 보내려고 합니다. 허용하시겠습니까?”
+3. 사용자가 허용 or 거부 선택
+4. 결과(허용/거부)를 앱에서 확인 가능
+
+● 예시 코드 (Swift)
+```
+import UserNotifications
+UNUserNotificationCenter.current().requestAuthorization(
+    options: [.alert, .sound, .badge]
+) { granted, error in
+    if granted {
+        print("알림 권한 허용됨")
+    } else {
+        print("알림 권한 거부됨")
+    }
+}
+```
+
+옵션 설명
+• .alert: 배너, 알림센터 표시 허용
+• .sound: 소리 알림 허용
+• .badge: 앱 아이콘 우측 배지(숫자) 표시 허용
+
+
+● 팁 & 주의사항
+• 권한 요청은 보통 앱 최초 실행 시 한 번만!
+• 사용자가 ‘거부’하면, 나중에 시스템 설정에서만 바꿀 수 있음(앱 내에서 팝업 다시 띄울 수 없음).
+• 권한 요청 전에 왜 필요한지 안내 문구를 먼저 보여주는 게 유저 경험에 좋음.
+
+
+● 권한 상태 확인 및 설정 이동
+사용자가 알림을 꺼뒀을 때 설정으로 이동하도록 안내할 수도 있어:
+```
+if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+    UIApplication.shared.open(appSettings)
+}
+```
+
+● 한 줄 요약
+iOS 앱은 반드시 사용자의 동의를 받아야만 푸시 알림을 보낼 수 있으며,
+이를 위해 requestAuthorization 메서드를 사용한다!
