@@ -70,31 +70,4 @@
 ### **2. 실제로 개발 코드에서는**
  iOS 푸시 알림 권한 및 Device Token 받기 예시
 
-```swift
-// 1. 알림 권한 요청 (사용자에게 알림 허용 여부 물어봄)
-UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-    if granted {
-        // 2. 사용자가 허용하면, APNs에 등록 요청!
-        DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
-            // 여기서 iOS가 APNs 서버에 "이 기기에서 푸시 받고 싶어요"라고 요청
-        }
-    }
-    // 거부된 경우, 적절한 처리(안내) 가능
-}
-
-// 3. APNs 등록이 성공하면 자동으로 호출되는 AppDelegate 메서드
-func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    // 4. 여기서 'deviceToken'을 받음! (이게 바로 푸시 알림 받을 때 필요한 주소)
-    // 5. deviceToken을 서버(백엔드)에 전송해서, 서버가 푸시 알림을 보낼 수 있게 함
-}
-
-
-## 코드 예시
-+ 실제 코드 예시를 작성
-
-## Keywords
-+ 파생된 키워드들을 작성
-
-## References
-- 참고한 레퍼런스를 작성 (예 : Apple의 공식 문서)
+''' 
