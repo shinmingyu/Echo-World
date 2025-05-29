@@ -134,3 +134,4 @@ if let appSettings = URL(string: UIApplication.openSettingsURLString) {
 ● 한 줄 요약
 iOS 앱은 반드시 사용자의 동의를 받아야만 푸시 알림을 보낼 수 있으며,
 이를 위해 requestAuthorization 메서드를 사용한다!
+
