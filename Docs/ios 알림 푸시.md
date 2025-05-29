@@ -181,6 +181,10 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 • 사용자가 알림 권한을 거부해도, 토큰은 발급 가능
 (단, 실제 알림 수신은 불가)
 
+● 기타
+• APNs에서 주는 토큰을 서버(백엔드)에 직접 적어주는 것이 아니라
+앱 내에 서버 API를 연결해서 앱에서 자동으로 서버에 토큰을 주는 방식
+
 📢 한 줄 요약
 Device Token은 “내 기기로 푸시를 보내주세요!”라는 주소표이고,
 항상 서버에 저장/관리해야 푸시 알림을 보낼 수 있다!
