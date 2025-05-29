@@ -69,5 +69,15 @@
 - 때문에 따로 해야할 작업이 있는 것은 아니고 앱단에서 APNs에 접근해서 토큰을 얻어오는 식.
 ### **2. 실제로 개발 코드에서는**
  iOS 푸시 알림 권한 및 Device Token 받기 예시
+```
+// 권한 요청
+UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+}
+// 여기서 iOS가 APNs에 등록 요청!
+UIApplication.shared.registerForRemoteNotifications()
 
-''' 
+// 여기서 deviceToken을 받음!
+func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+// 서버로 전송!
+}
+```
