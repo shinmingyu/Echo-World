@@ -183,7 +183,7 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 
 ● 기타
 • APNs에서 주는 토큰을 서버(백엔드)에 직접 적어주는 것이 아니라
-앱 내에 서버 API를 연결해서 앱에서 자동으로 서버에 토큰을 주는 방식
+앱 내에 서버 API로 토큰을 주는 방식
 
 📢 한 줄 요약
 Device Token은 “내 기기로 푸시를 보내주세요!”라는 주소표이고,
